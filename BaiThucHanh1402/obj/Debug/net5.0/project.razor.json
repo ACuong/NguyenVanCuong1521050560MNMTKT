@@ -15634,6 +15634,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\BaiThucHanh1402\\Views\\HelloWorld\\Index.cshtml",
+      "TargetPath": "Views\\HelloWorld\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\BaiThucHanh1402\\Views\\Home\\GiaiPTBac1.cshtml",
       "TargetPath": "Views\\Home\\GiaiPTBac1.cshtml",
       "FileKind": "mvc"

@@ -40,3 +40,4 @@ D:\HocTap\MaNguonMoTKT2\BTThucHanh\BaiThucHanh1402\obj\Debug\net5.0\BaiThucHanh1
 D:\HocTap\MaNguonMoTKT2\BTThucHanh\BaiThucHanh1402\obj\Debug\net5.0\BaiThucHanh1402.genruntimeconfig.cache
 D:\HocTap\MaNguonMoTKT2\BTThucHanh\BaiThucHanh1402\obj\Debug\net5.0\BaiThucHanh1402.csproj.CopyComplete
 D:\HocTap\MaNguonMoTKT2\BTThucHanh\BaiThucHanh1402\obj\Debug\net5.0\Razor\Views\Home\GiaiPTBac2.cshtml.g.cs
+D:\HocTap\MaNguonMoTKT2\BTThucHanh\Baithuchanh1402\obj\Debug\net5.0\Razor\Views\HelloWorld\Index.cshtml.g.cs

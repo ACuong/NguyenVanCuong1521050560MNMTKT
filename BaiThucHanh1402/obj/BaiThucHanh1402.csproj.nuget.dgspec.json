@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\BaiThucHanh1402\\BaiThucHanh1402.csproj": {}
+    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Baithuchanh1402\\BaiThucHanh1402.csproj": {}
   },
   "projects": {
-    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\BaiThucHanh1402\\BaiThucHanh1402.csproj": {
+    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Baithuchanh1402\\BaiThucHanh1402.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\BaiThucHanh1402\\BaiThucHanh1402.csproj",
+        "projectUniqueName": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Baithuchanh1402\\BaiThucHanh1402.csproj",
         "projectName": "BaiThucHanh1402",
-        "projectPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\BaiThucHanh1402\\BaiThucHanh1402.csproj",
+        "projectPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Baithuchanh1402\\BaiThucHanh1402.csproj",
         "packagesPath": "C:\\Users\\lyngu\\.nuget\\packages\\",
-        "outputPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\BaiThucHanh1402\\obj\\",
+        "outputPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Baithuchanh1402\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

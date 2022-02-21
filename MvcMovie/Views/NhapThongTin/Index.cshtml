@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Nhap thong tin";
+}
+<h2>Nhập thông tin</h2>
+@using (Html.BeginForm())
+{
+    <p>Nhập vào Tên</p>
+    <input type="text" name="Ten" />
+    <p>Nhập vào Tuổi</p>
+    <input type="text" name="Tuoi" />
+    <input type="submit" value="Nhap Thong Tin" />
+}
+<br> 
+<h2>Thông tin vừa nhập</h2>
+<p>Tên: @ViewBag.Ten</p>
+<p>Tuổi: @ViewBag.Tuoi</p>
