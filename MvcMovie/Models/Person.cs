@@ -12,5 +12,6 @@ namespace MvcMovie
         [Required]
         [Display(Name ="Tên người")]
         public string PersonName { get; set; }
+        public string Address { get; set; }
     }
 }

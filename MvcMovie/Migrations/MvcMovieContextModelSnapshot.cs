@@ -20,6 +20,9 @@ namespace MvcMovie.Migrations
                     b.Property<string>("EmployeeID")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("EmployeeName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -57,6 +60,13 @@ namespace MvcMovie.Migrations
                     b.Property<string>("PersonID")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PersonName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -64,11 +74,16 @@ namespace MvcMovie.Migrations
                     b.HasKey("PersonID");
 
                     b.ToTable("Person");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
             modelBuilder.Entity("MvcMovie.Student", b =>
                 {
                     b.Property<string>("StudentID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StudentName")
@@ -78,6 +93,24 @@ namespace MvcMovie.Migrations
                     b.HasKey("StudentID");
 
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("MvcMovie.Customer", b =>
+                {
+                    b.HasBaseType("MvcMovie.Person");
+
+                    b.Property<string>("Birthday")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .HasMaxLength(4)
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("Customer");
                 });
 #pragma warning restore 612, 618
         }

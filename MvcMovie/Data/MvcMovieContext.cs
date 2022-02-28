@@ -20,4 +20,6 @@ using MvcMovie;
         public DbSet<MvcMovie.Person> Person { get; set; }
 
         public DbSet<MvcMovie.Employee> Employee { get; set; }
+
+        public DbSet<MvcMovie.Customer> Customer { get; set; }
     }

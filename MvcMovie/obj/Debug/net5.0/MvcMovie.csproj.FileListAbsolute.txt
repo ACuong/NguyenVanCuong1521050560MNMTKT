@@ -186,3 +186,8 @@ D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Employe
 D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Employee\Details.cshtml.g.cs
 D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Employee\Edit.cshtml.g.cs
 D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Employee\Index.cshtml.g.cs
+D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Customer\Create.cshtml.g.cs
+D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Customer\Delete.cshtml.g.cs
+D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Customer\Details.cshtml.g.cs
+D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Customer\Edit.cshtml.g.cs
+D:\HocTap\MaNguonMoTKT2\BTThucHanh\MvcMovie\obj\Debug\net5.0\Razor\Views\Customer\Index.cshtml.g.cs

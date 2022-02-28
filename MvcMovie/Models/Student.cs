@@ -12,5 +12,7 @@ namespace MvcMovie
         [Required]
         [Display(Name ="Tên Sinh Viên")]
         public string StudentName { get; set; }
+
+        public string Address { get; set; }
     }
 }

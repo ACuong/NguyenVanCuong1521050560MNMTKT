@@ -15649,6 +15649,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Customer\\Details.cshtml",
+      "TargetPath": "Views\\Customer\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Customer\\Index.cshtml",
+      "TargetPath": "Views\\Customer\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Movies\\Create.cshtml",
       "TargetPath": "Views\\Movies\\Create.cshtml",
       "FileKind": "mvc"
@@ -15694,6 +15704,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Customer\\Edit.cshtml",
+      "TargetPath": "Views\\Customer\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Movies\\Details.cshtml",
       "TargetPath": "Views\\Movies\\Details.cshtml",
       "FileKind": "mvc"
@@ -15719,6 +15734,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Customer\\Delete.cshtml",
+      "TargetPath": "Views\\Customer\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Person\\Index.cshtml",
       "TargetPath": "Views\\Person\\Index.cshtml",
       "FileKind": "mvc"
@@ -15726,6 +15746,11 @@
     {
       "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\Views\\Customer\\Create.cshtml",
+      "TargetPath": "Views\\Customer\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
