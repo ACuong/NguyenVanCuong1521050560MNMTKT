@@ -12,6 +12,9 @@ namespace MvcMovie.Controllers
     public class CustomerController : Controller
     {
         private readonly MvcMovieContext _context;
+        AutoGenerateKey Aukey = new AutoGenerateKey();
+
+    
 
         public CustomerController(MvcMovieContext context)
         {
@@ -45,7 +48,20 @@ namespace MvcMovie.Controllers
         // GET: Customer/Create
         public IActionResult Create()
         {
-            return View();
+            string NewID = "";
+            var emp = _context.Person.ToList().OrderByDescending(c => c.PersonID); // lay danh sach person theo ID lon nhat
+            var countEmployee = _context.Person.Count(); 
+
+            if (countEmployee == 0)
+            {
+                NewID = "CS001";
+            }
+            else
+            {
+                NewID = Aukey.GenerateKey(emp.FirstOrDefault().PersonID);
+            }
+            ViewBag.newPerID = NewID;
+            return View();     
         }
 
         // POST: Customer/Create
@@ -57,6 +73,7 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

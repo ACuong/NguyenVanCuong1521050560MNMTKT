@@ -12,6 +12,7 @@ namespace MvcMovie.Controllers
     public class StudentController : Controller
     {
         private readonly MvcMovieContext _context;
+        AutoGenerateKey Aukey = new AutoGenerateKey();
 
         public StudentController(MvcMovieContext context)
         {
@@ -45,6 +46,19 @@ namespace MvcMovie.Controllers
         // GET: Student/Create
         public IActionResult Create()
         {
+            string NewID = "";
+            var emp = _context.Student.ToList().OrderByDescending(c => c.StudentID); // lay danh sach person theo ID lon nhat
+            var countEmployee = _context.Student.Count(); 
+
+            if (countEmployee == 0)
+            {
+                NewID = "SV001";
+            }
+            else
+            {
+                NewID = Aukey.GenerateKey(emp.FirstOrDefault().StudentID);
+            }
+            ViewBag.newID = NewID;
             return View();
         }
 

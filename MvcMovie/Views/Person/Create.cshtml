@@ -13,9 +13,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="PersonID" class="control-label"></label>
-                <input asp-for="PersonID" class="form-control" />
-                <span asp-validation-for="PersonID" class="text-danger"></span>
+                <input hidden value="@ViewBag.newID" name="PersonID" />  
             </div>
             <div class="form-group">
                 <label asp-for="PersonName" class="control-label"></label>

@@ -12,7 +12,7 @@ namespace MvcMovie.Controllers
     public class EmployeeController : Controller
     {
         private readonly MvcMovieContext _context;
-
+        AutoGenerateKey Aukey = new AutoGenerateKey();
         public EmployeeController(MvcMovieContext context)
         {
             _context = context;
@@ -45,7 +45,21 @@ namespace MvcMovie.Controllers
         // GET: Employee/Create
         public IActionResult Create()
         {
-            return View();
+            string NewID = "";
+            var emp = _context.Employee.ToList().OrderByDescending(c => c.EmployeeID); // lay danh sach person theo ID lon nhat
+            var countEmployee = _context.Employee.Count(); 
+
+            if (countEmployee == 0)
+            {
+                NewID = "NV001";
+            }
+            else
+            {
+                NewID = Aukey.GenerateKey(emp.FirstOrDefault().EmployeeID);
+            }
+            ViewBag.newID = NewID;
+            return View();  
+            
         }
 
         // POST: Employee/Create
