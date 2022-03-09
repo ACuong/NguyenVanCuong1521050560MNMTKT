@@ -12,11 +12,12 @@ namespace MvcMovie.Controllers
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
-
+        XuLyChuoi xulychuoi = new XuLyChuoi();
         public MoviesController(MvcMovieContext context)
         {
             _context = context;
         }
+        AutoGenerateKey Aukey = new AutoGenerateKey();
 
         // GET: Movies
         public async Task<IActionResult> Index()
@@ -55,8 +56,14 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
         {
+            movie.Title = xulychuoi.Xuly(movie.Title);
+            movie.Genre = xulychuoi.Xuly(movie.Genre);
+
+           //movie.Title = Aukey.GenerateKey(movie.Title);
+
             if (ModelState.IsValid)
             {
+               
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,6 +94,8 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
         {
+            movie.Title = xulychuoi.Xuly(movie.Title);
+            movie.Genre = xulychuoi.Xuly(movie.Genre);
             if (id != movie.Id)
             {
                 return NotFound();

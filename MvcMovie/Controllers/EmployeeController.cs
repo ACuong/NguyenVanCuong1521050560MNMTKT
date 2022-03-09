@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie;
+using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
@@ -13,6 +14,7 @@ namespace MvcMovie.Controllers
     {
         private readonly MvcMovieContext _context;
         AutoGenerateKey Aukey = new AutoGenerateKey();
+        XuLyChuoi Xulychuoi = new XuLyChuoi();
         public EmployeeController(MvcMovieContext context)
         {
             _context = context;
@@ -69,6 +71,8 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmployeeID,EmployeeName")] Employee employee)
         {
+            employee.EmployeeName = Xulychuoi.Xuly(employee.EmployeeName);
+            employee.Address = Xulychuoi.Xuly(employee.Address);
             if (ModelState.IsValid)
             {
                 _context.Add(employee);
@@ -105,6 +109,8 @@ namespace MvcMovie.Controllers
             {
                 return NotFound();
             }
+            employee.EmployeeName = Xulychuoi.Xuly(employee.EmployeeName);
+            employee.Address = Xulychuoi.Xuly(employee.Address);
 
             if (ModelState.IsValid)
             {

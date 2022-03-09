@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\MvcMovie.csproj": {}
+    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Mvcmovie\\MvcMovie.csproj": {}
   },
   "projects": {
-    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\MvcMovie.csproj": {
+    "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Mvcmovie\\MvcMovie.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\MvcMovie.csproj",
+        "projectUniqueName": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Mvcmovie\\MvcMovie.csproj",
         "projectName": "MvcMovie",
-        "projectPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\MvcMovie.csproj",
+        "projectPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Mvcmovie\\MvcMovie.csproj",
         "packagesPath": "C:\\Users\\lyngu\\.nuget\\packages\\",
-        "outputPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\MvcMovie\\obj\\",
+        "outputPath": "D:\\HocTap\\MaNguonMoTKT2\\BTThucHanh\\Mvcmovie\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

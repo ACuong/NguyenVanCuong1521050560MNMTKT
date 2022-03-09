@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie;
+using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
@@ -14,7 +15,7 @@ namespace MvcMovie.Controllers
         private readonly MvcMovieContext _context;
         AutoGenerateKey Aukey = new AutoGenerateKey();
 
-    
+        XuLyChuoi XuLyChuoi = new XuLyChuoi();
 
         public CustomerController(MvcMovieContext context)
         {
@@ -71,6 +72,11 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Email,Gender,Birthday,PersonID,PersonName,Address")] Customer customer)
         {
+            customer.Address = XuLyChuoi.Xuly(customer.Address);
+            customer.Email = XuLyChuoi.Xuly(customer.Email);
+            customer.Birthday = XuLyChuoi.Xuly(customer.Birthday);
+            customer.PersonName = XuLyChuoi.Xuly(customer.PersonName);
+            customer.Address = XuLyChuoi.Xuly(customer.Address);
             if (ModelState.IsValid)
             {
                 
@@ -104,6 +110,11 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Email,Gender,Birthday,PersonID,PersonName,Address")] Customer customer)
         {
+            customer.Address = XuLyChuoi.Xuly(customer.Address);
+            customer.Email = XuLyChuoi.Xuly(customer.Email);
+            customer.Birthday = XuLyChuoi.Xuly(customer.Birthday);
+            customer.PersonName = XuLyChuoi.Xuly(customer.PersonName);
+            customer.Address = XuLyChuoi.Xuly(customer.Address);
             if (id != customer.PersonID)
             {
                 return NotFound();

@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie;
+using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
     public class StudentController : Controller
     {
         private readonly MvcMovieContext _context;
+        XuLyChuoi Xulychuoi = new XuLyChuoi();
         AutoGenerateKey Aukey = new AutoGenerateKey();
 
         public StudentController(MvcMovieContext context)
@@ -46,19 +48,7 @@ namespace MvcMovie.Controllers
         // GET: Student/Create
         public IActionResult Create()
         {
-            string NewID = "";
-            var emp = _context.Student.ToList().OrderByDescending(c => c.StudentID); // lay danh sach person theo ID lon nhat
-            var countEmployee = _context.Student.Count(); 
 
-            if (countEmployee == 0)
-            {
-                NewID = "SV001";
-            }
-            else
-            {
-                NewID = Aukey.GenerateKey(emp.FirstOrDefault().StudentID);
-            }
-            ViewBag.newID = NewID;
             return View();
         }
 
@@ -69,8 +59,23 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentID,StudentName")] Student student)
         {
+            student.StudentName = Xulychuoi.Xuly(student.StudentName);
+            student.Address = Xulychuoi.Xuly(student.Address);
             if (ModelState.IsValid)
             {
+                
+                var emp = _context.Student.ToList().OrderByDescending(c => c.StudentID); // lay danh sach theo ID lon nhat
+                var count = _context.Student.Count(); 
+
+                if (count == 0)
+                {
+                    student.StudentID = "SV001";
+                }
+                else
+                {
+                    student.StudentID = Aukey.GenerateKey(emp.FirstOrDefault().StudentID);
+                }
+
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -101,6 +106,8 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("StudentID,StudentName")] Student student)
         {
+            student.StudentName = Xulychuoi.Xuly(student.StudentName);
+            student.Address = Xulychuoi.Xuly(student.Address);
             if (id != student.StudentID)
             {
                 return NotFound();
