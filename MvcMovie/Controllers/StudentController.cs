@@ -22,9 +22,19 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Student.ToListAsync());
+
+            var movies = from m in _context.Student select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.StudentName.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
+
+            //return View(await _context.Student.ToListAsync());
         }
 
         // GET: Student/Details/5
