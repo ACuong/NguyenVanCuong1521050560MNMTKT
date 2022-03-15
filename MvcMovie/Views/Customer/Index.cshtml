@@ -1,4 +1,4 @@
-@model IEnumerable<MvcMovie.Customer>
+@model MvcMovie.Models.CustomerGioiTinhViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,29 +9,40 @@
 <p>
     <a asp-action="Create">Tạo mới</a>
 </p>
+
+<form asp-controller="Customer" asp-action="Index" method="get">
+    <p>
+        <select asp-for="GenderIn" asp-items="Model.Gender">
+            <option value="">All</option>
+        </select>
+
+        Tên: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.Customers[0].Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                @Html.DisplayNameFor(model => model.Customers[0].Gender)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Birthday)
+                @Html.DisplayNameFor(model => model.Customers[0].Birthday)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PersonName)
+                @Html.DisplayNameFor(model => model.Customers[0].PersonName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.Customers[0].Address)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Customers) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)

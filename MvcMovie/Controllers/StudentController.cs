@@ -67,7 +67,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,StudentName")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentID,StudentName, Address")] Student student)
         {
             student.StudentName = Xulychuoi.Xuly(student.StudentName);
             student.Address = Xulychuoi.Xuly(student.Address);
@@ -114,7 +114,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("StudentID,StudentName")] Student student)
+        public async Task<IActionResult> Edit(string id, [Bind("StudentID,StudentName,Address")] Student student)
         {
             student.StudentName = Xulychuoi.Xuly(student.StudentName);
             student.Address = Xulychuoi.Xuly(student.Address);

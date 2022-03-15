@@ -21,9 +21,34 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Employee
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string EmployeeAdress, string SearchString)
         {
-            return View(await _context.Employee.ToListAsync());
+            IQueryable<string> genreQuery = from m in _context.Employee
+                                                orderby m.Address
+                                                select m.Address;
+
+           var Nhanvienview = from m in _context.Employee
+                 select m;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                Nhanvienview = Nhanvienview.Where(s => s.EmployeeName.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(EmployeeAdress))
+            {
+                Nhanvienview = Nhanvienview.Where(x => x.Address == EmployeeAdress);
+            }
+
+            var EmployeeAddressVM = new EmployeeAddressViewModel
+            {
+                Adress = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Employees = await Nhanvienview.ToListAsync()
+            };
+
+            return View(EmployeeAddressVM);
+
+            //return View(await _context.Employee.ToListAsync());
         }
 
         // GET: Employee/Details/5
@@ -69,7 +94,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeID,EmployeeName")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeID,EmployeeName,Address")] Employee employee)
         {
             employee.EmployeeName = Xulychuoi.Xuly(employee.EmployeeName);
             employee.Address = Xulychuoi.Xuly(employee.Address);
@@ -103,7 +128,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("EmployeeID,EmployeeName")] Employee employee)
+        public async Task<IActionResult> Edit(string id, [Bind("EmployeeID,EmployeeName,Address")] Employee employee)
         {
             if (id != employee.EmployeeID)
             {

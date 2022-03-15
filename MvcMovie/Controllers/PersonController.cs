@@ -22,9 +22,33 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Person
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string PersonAdress, string SearchString)
         {
-            return View(await _context.Person.ToListAsync());
+            IQueryable<string> genreQuery = from m in _context.Person
+                                                orderby m.Address
+                                                select m.Address;
+
+           var Personview = from m in _context.Person
+                 select m;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                Personview = Personview.Where(s => s.PersonName.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(PersonAdress))
+            {
+                Personview = Personview.Where(x => x.Address == PersonAdress);
+            }
+
+            var PersonAdressView = new PersonAddressViewModel
+            {
+                Adress = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Persons = await Personview.ToListAsync()
+            };
+
+            return View(PersonAdressView);
+            //return View(await _context.Person.ToListAsync());
         }
 
         // GET: Person/Details/5
@@ -69,7 +93,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonID,PersonName")] Person person)
+        public async Task<IActionResult> Create([Bind("PersonID,PersonName,Address")] Person person)
         {
             person.Address = Xulychuoi.Xuly(person.Address);
             person.PersonName = Xulychuoi.Xuly(person.PersonName);
@@ -103,8 +127,10 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("PersonID,PersonName")] Person person)
+        public async Task<IActionResult> Edit(string id, [Bind("PersonID,PersonName,Address")] Person person)
         {
+            person.Address = Xulychuoi.Xuly(person.Address);
+            person.PersonName = Xulychuoi.Xuly(person.PersonName);
             if (id != person.PersonID)
             {
                 return NotFound();

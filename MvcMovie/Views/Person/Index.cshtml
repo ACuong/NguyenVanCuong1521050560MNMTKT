@@ -1,4 +1,5 @@
-@model IEnumerable<MvcMovie.Person>
+@model MvcMovie.Models.PersonAddressViewModel
+
 
 @{
     ViewData["Title"] = "Index";
@@ -9,20 +10,36 @@
 <p>
     <a asp-action="Create">Tạo mới</a>
 </p>
+<form asp-controller="Person" asp-action="Index" method="get">
+    <p>
+        <select asp-for="PersonAdress" asp-items="Model.Adress">
+            <option value="">All</option>
+        </select>
+
+        Tên: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PersonName)
+                @Html.DisplayNameFor(model => model.Persons[0].PersonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons[0].Address)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Persons) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.PersonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PersonID">Sửa</a> |

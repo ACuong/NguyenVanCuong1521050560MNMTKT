@@ -23,9 +23,35 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Customer
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string GenderIn, string SearchString)
         {
-            return View(await _context.Customer.ToListAsync());
+            IQueryable<string> genreQuery = from m in _context.Customer
+                                                orderby m.Gender
+                                                select m.Gender;
+
+           var Customerview = from m in _context.Customer
+                 select m;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                Customerview = Customerview.Where(s => s.PersonName.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(GenderIn))
+            {
+                Customerview = Customerview.Where(x => x.Gender == GenderIn);
+            }
+
+            var CustomerGenderVM = new CustomerGioiTinhViewModel
+            {
+                Gender = new SelectList(await genreQuery.Distinct().ToListAsync()),
+                Customers = await Customerview.ToListAsync()
+            };
+
+            return View(CustomerGenderVM);
+
+            
+            //return View(await _context.Customer.ToListAsync());
         }
 
         // GET: Customer/Details/5
