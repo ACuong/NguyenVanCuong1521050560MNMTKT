@@ -13,10 +13,10 @@ namespace MvcMovie.Models
             if (String.IsNullOrEmpty(s))   
             return s;  
             string newstring = "";   
+            
             //lấy danh sách các từ  
-    
             string[] words = s.Split(' '); // hàm Split tách ra một bảng gồm các chuỗi con được ngăn cách bởi ký tự - cụ thể ở đây khoảng trắng " "
-            // ở đây tách ra 3 chuỗi con " mã" " nguồn" "mở"
+            // ở đây tách ra 3 chuỗi con " mã" "nguồn" "mở"
             foreach (string word in words)  // duyệt từng chuỗi trong bảng chuỗi words
             {       
                 if (word.Trim() != "")  //.Trim() loại bỏ khoảng trắng thừa dầu cuối

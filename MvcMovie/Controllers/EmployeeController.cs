@@ -85,8 +85,7 @@ namespace MvcMovie.Controllers
                 NewID = Aukey.GenerateKey(emp.FirstOrDefault().EmployeeID);
             }
             ViewBag.newID = NewID;
-            return View();  
-            
+            return View();          
         }
 
         // POST: Employee/Create

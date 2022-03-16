@@ -11,6 +11,8 @@ namespace MvcMovie.Models
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; }
+
+        [Range(1, 100)] 
         public decimal Price { get; set; }
     }
 }
