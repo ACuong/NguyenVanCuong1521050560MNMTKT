@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie;
 using MvcMovie.Models;
-
+using MvcMovie.Models.Process;
 namespace MvcMovie.Controllers
 {
     public class StudentController : Controller
@@ -15,6 +19,29 @@ namespace MvcMovie.Controllers
         private readonly MvcMovieContext _context;
         XuLyChuoi Xulychuoi = new XuLyChuoi();
         AutoGenerateKey Aukey = new AutoGenerateKey();
+
+        ExcelProcess ExcelProcess =  new ExcelProcess();
+
+        // Private int WriteDatatableToDatabase(DataTable dt)
+        //     {
+        //     Try{
+        //         Var con = Configuration.GetconnectionString(“MvcMovieContext”);
+        //         //using bulkcopy to copy data from datatable to databse
+        //         SqlBulkCopy builkcopy = new SqlBulkCopy(con);
+        //         bulkcopy.DestinationTableName = "Movies";
+        //         bulkcopy.ColumnMappings.Add(0,"MoviesID");
+        //         bulkcopy.ColumnMappings.Add(1,"MoviesName");
+        //         bulkcopy.ColumnMappings.Add(2,"Price");
+        //         bulkcopy.ColumnMappings.Add(2,"Genre");
+        //         bulkcopy.ColumnMappings.Add(2,"Price");
+        //         bulkcopy.WriteToServer(dt);
+        //         }
+        //     Catch{
+        //         Return 0; 
+        //         }
+        //     Return dt.Rows.Count;
+        //     }
+
 
         public StudentController(MvcMovieContext context)
         {
@@ -67,8 +94,59 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,StudentName, Address")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentID,StudentName, Address")] Student student, IFormFile file)
         {
+
+            if (file != null)
+            {
+                string fileExtension = Path.GetExtension(file.FileName);
+                if (fileExtension != ".xls" && fileExtension != ".xlsx")
+                {
+                    ModelState.AddModelError("", "Please choose excel file to upload!");
+                }
+            
+                else
+                {
+                    //rename file when upload to server
+                    //tao duong dan /Uploads/Excels de luu file upload len server
+                    var fileName = "DanhSach";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", fileName + fileExtension);
+                    var fileLocation = new FileInfo(filePath).ToString();
+
+                    if (ModelState.IsValid)
+                    {
+                        //upload file to server
+                        if (file.Length > 0)
+                        {
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                //save file to server
+                                await file.CopyToAsync(stream);
+                                //read data from file and write to database
+                                //_excelPro la doi tuong xu ly file excel ExcelProcess
+                                var dt = ExcelProcess.ExcelToDataTable(fileLocation);
+                                //ghi du lieu datatable vao database
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                   var st = new Student();
+                                   st.StudentID = dt.Rows[i][0].ToString();
+                                   st.StudentName = dt.Rows[i][1].ToString();
+                                   st.Address = dt.Rows[i][2].ToString();
+                                   _context.Student.Add(st);
+                                }
+                                _context.SaveChanges();
+
+                                //WriteDatatableToDatabase(dt);
+                                
+                            }
+                            return RedirectToAction(nameof(Index));
+                        }
+                    }
+                }
+            }
+          
+
+
             student.StudentName = Xulychuoi.Xuly(student.StudentName);
             student.Address = Xulychuoi.Xuly(student.Address);
             if (ModelState.IsValid)
